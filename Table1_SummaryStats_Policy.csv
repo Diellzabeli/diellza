@@ -1,0 +1,85 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Table 1: Summary Statistics (Women ages 18–50)}
+\begin{tabular}{l*{5}{r}}
+\toprule
+                            &   All Women         &     Mothers         &     No Kids         &     Married         & Not Married         \\
+\midrule
+Age (years)                 &       32.15         &       33.97         &       29.56         &       34.35         &       28.23         \\
+                            &      (9.41)         &      (7.94)         &     (10.66)         &      (8.70)         &      (9.36)         \\
+\addlinespace
+Years of Education          &       12.29         &       12.04         &       12.64         &       12.28         &       12.31         \\
+                            &      (2.61)         &      (2.58)         &      (2.60)         &      (2.57)         &      (2.66)         \\
+\addlinespace
+Education Levels            &        2.11         &        2.03         &        2.22         &        2.10         &        2.13         \\
+                            &      (0.73)         &      (0.72)         &      (0.73)         &      (0.71)         &      (0.76)         \\
+\addlinespace
+Married (Spouse Present)    &        0.64         &        0.81         &        0.40         &        1.00         &        0.00         \\
+                            &      (0.48)         &      (0.39)         &      (0.49)         &      (0.00)         &      (0.00)         \\
+\addlinespace
+Black                       &        0.12         &        0.13         &        0.11         &        0.07         &        0.20         \\
+                            &      (0.32)         &      (0.33)         &      (0.31)         &      (0.26)         &      (0.40)         \\
+\addlinespace
+Hispanic                    &        0.06         &        0.07         &        0.05         &        0.06         &        0.07         \\
+                            &      (0.24)         &      (0.26)         &      (0.22)         &      (0.24)         &      (0.25)         \\
+\addlinespace
+Any Children Under 5        &        0.25         &        0.42         &        0.00         &        0.32         &        0.12         \\
+                            &      (0.43)         &      (0.49)         &      (0.00)         &      (0.47)         &      (0.32)         \\
+\addlinespace
+Number of Children          &        1.37         &        2.25         &        0.11         &        1.76         &        0.68         \\
+                            &      (1.45)         &      (1.25)         &      (0.41)         &      (1.43)         &      (1.21)         \\
+\addlinespace
+Employed                    &        0.66         &        0.57         &        0.79         &        0.60         &        0.77         \\
+                            &      (0.47)         &      (0.50)         &      (0.41)         &      (0.49)         &      (0.42)         \\
+\addlinespace
+Individual Earnings (2013$) &    13992.83         &    11367.85         &    17699.42         &    12815.91         &    16053.13         \\
+                            &  (17261.67)         &  (15900.30)         &  (18391.46)         &  (16757.86)         &  (17924.86)         \\
+\addlinespace
+Individual Earnings (2013$, >0)&    21029.27         &    19780.34         &    22306.61         &    21108.57         &    20919.44         \\
+                            &  (17315.57)         &  (16538.15)         &  (17986.68)         &  (16955.56)         &  (17801.65)         \\
+\addlinespace
+Household Earnings (2013$)  &    43110.74         &    49537.56         &    34035.79         &    58567.06         &    16053.13         \\
+                            &  (37951.91)         &  (38373.21)         &  (35415.68)         &  (37715.79)         &  (17924.86)         \\
+\addlinespace
+Household Earnings (2013$, >0)&    49274.56         &    56287.50         &    39229.58         &    62549.33         &    20919.44         \\
+                            &  (36641.01)         &  (35961.18)         &  (35240.87)         &  (35638.65)         &  (17801.65)         \\
+\addlinespace
+EITC-Eligible Household (Nominal $)&        0.42         &        0.33         &        0.54         &        0.23         &        0.77         \\
+                            &      (0.49)         &      (0.47)         &      (0.50)         &      (0.42)         &      (0.42)         \\
+\addlinespace
+EITC-Eligible Household (Nominal $, >0)&        0.30         &        0.21         &        0.41         &        0.16         &        0.53         \\
+                            &      (0.46)         &      (0.41)         &      (0.49)         &      (0.37)         &      (0.50)         \\
+\addlinespace
+Annual Weeks Worked         &       26.80         &       23.37         &       31.42         &       25.33         &       29.17         \\
+                            &     (20.48)         &     (20.89)         &     (18.95)         &     (20.81)         &     (19.70)         \\
+\addlinespace
+Annual Weeks Worked (>0)    &       37.31         &       36.49         &       38.17         &       37.39         &       37.20         \\
+                            &     (13.85)         &     (14.25)         &     (13.36)         &     (13.73)         &     (14.01)         \\
+\addlinespace
+Weekly Hours Worked         &       20.71         &       16.87         &       26.52         &       18.07         &       25.49         \\
+                            &     (19.14)         &     (18.80)         &     (18.17)         &     (18.98)         &     (18.49)         \\
+\addlinespace
+Weekly Hours Worked (>0)    &       34.93         &       34.11         &       35.76         &       34.48         &       35.53         \\
+                            &     (11.01)         &     (11.23)         &     (10.71)         &     (11.03)         &     (10.94)         \\
+\midrule
+Observations                &      570337         &      340188         &      230149         &      369936         &      200401         \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize mean coefficients; sd in parentheses}\\
+\multicolumn{6}{l}{\footnotesize Notes: Individual March CPS weights (asecwt) used.}\\
+\multicolumn{6}{l}{\footnotesize ,}\\
+\multicolumn{6}{l}{\footnotesize The sample includes all women ages 18–50.}\\
+\multicolumn{6}{l}{\footnotesize ,}\\
+\multicolumn{6}{l}{\footnotesize Standard deviations are in parentheses.}\\
+\multicolumn{6}{l}{\footnotesize ,}\\
+\multicolumn{6}{l}{\footnotesize A total of 376,919 individuals have positive individual earnings,}\\
+\multicolumn{6}{l}{\footnotesize ,}\\
+\multicolumn{6}{l}{\footnotesize 500,471 have positive household earnings,}\\
+\multicolumn{6}{l}{\footnotesize ,}\\
+\multicolumn{6}{l}{\footnotesize 397,210 have positive weeks worked last year,}\\
+\multicolumn{6}{l}{\footnotesize ,}\\
+\multicolumn{6}{l}{\footnotesize and 315,902 have positive hours worked last week.}\\
+\multicolumn{6}{l}{\footnotesize ,}\\
+\multicolumn{6}{l}{\footnotesize Source: 1971–1986 March CPS data.}\\
+\multicolumn{6}{l}{\footnotesize \sym{*} \(p<0.05\), \sym{**} \(p<0.01\), \sym{***} \(p<0.001\)}\\
+\end{tabular}
+\end{table}

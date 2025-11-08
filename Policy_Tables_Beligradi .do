@@ -1,14 +1,11 @@
-
-global ROOT "/Users/diellzabeligradi/Desktop/POLICY PROJECT"
-
-cd "$ROOT"
-
-log using "policy_TABLES_beligradi.log", name (DB) replace 
+clear all
+set more off
+cd "`c(pwd)'"
+log using "policy_TABLES_beligradi.log", name(DB) replace text
+use "cps_policy.dta", clear
 
 **************************** TABLE 1 *******************************************
 
-
-use "cps_policy.dta", clear
 *******************************************************************************
 * Summary Statistics by Group
  ********************************************************************************
@@ -52,10 +49,10 @@ est store NotMarried
 ********************************************************************************
 * Export Table 1: Summary Statistics
 ********************************************************************************
-esttab All Mothers NoKids Married NotMarried, ///
+esttab All Mothers NoKids Married NotMarried using "Table1_SummaryStats_Policy.csv", ///
+    replace ///
     main(mean %9.2f) aux(sd %9.2f) stats(N, fmt(%9.0f) labels("Observations")) ///
     label nonumbers varwidth(28) alignment(r) ///
-    title("Table 1: Summary Statistics (Women ages 18–50)") ///
     mlabels("All Women" "Mothers" "No Kids" "Married" "Not Married") ///
     coeflabels( ///
         age              "Age (years)" ///
@@ -86,14 +83,12 @@ esttab All Mothers NoKids Married NotMarried, ///
              "397,210 have positive weeks worked last year,", ///
              "and 315,902 have positive hours worked last week.", ///
              "Source: 1971–1986 March CPS data.")
-
-			 
 			 
 			 
 ********************************************************************************
 * Latex
 ********************************************************************************			
-esttab All Mothers NoKids Married NotMarried using "Table1_SummaryStats.tex", ///
+esttab All Mothers NoKids Married NotMarried using "Table1_SummaryStats_Policy.csv", ///
     replace ///
     booktabs ///
     main(mean %9.2f) aux(sd %9.2f) stats(N, fmt(%9.0f) labels("Observations")) ///
@@ -131,103 +126,6 @@ esttab All Mothers NoKids Married NotMarried using "Table1_SummaryStats.tex", //
              "Source: 1971–1986 March CPS data.")
 			 
 			 
-
-
-			 
-			 
-***************************** TABLE 2 *****************************************
-
-
-
-
-use "cps_women.dta", clear
-
-summarize 
-********************************************************************************
-* Interaction term 
-********************************************************************************
-gen mom = mother * post1975   // Mom × Post1975
-
-tab mom 
-tab mother 
-
-
-
-gen nonwhite_mom = mother * nonwhite 
-label var nonwhite_mom "non white mother (interaction term)"
-
-gen mom_age = mom * age 
-label var mom_age "moms age interaction term"
-
-gen nonwhite_post = nonwhite * post1975
-label var nonwhite_post "nonwhite 1975 (interaction term)"
-
-gen married_post = married * post1975 
-label var married_post "married 1975 (interaction term)"
-
-gen cohort = year - age 
-label var cohort "age group (inteaction term)"
-
-
-*Kitchen-sink
-gen nonwhite_incwelfr = nonwhite * incwelfr
-label var nonwhite_incwelfr "nonwhite welfare (interaction term)"
-
-gen nonwhite_married = nonwhite * married 
-label var nonwhite_married "Nonwhite married (inteaction term)"
-
-gen nchild_married = nchild * married 
-label var nchild_married "nchild and married(inteaction term)" 
-
-gen under5_married = under5 * married 
-label var under5_married "Number of children under 5 and married (inteaction term)" 
-
-gen married_incwelfr = married * incwelfr
-label var married_incwelfr "Married welfare (interaction term)" 
-
-gen eduyrs_married = educ_yrs * married 
-label var eduyrs_married  " Education and married(interaction term)"
-
-gen educyrs_under5 = educ_yrs * under5 
-label var educyrs_under5 " education year & child under 5 (interaction term)"
-
-gen educyrs_nonwhite = educ_yrs * nonwhite 
-label var educyrs_nonwhite " nonwhite education (interaction term)"
-
-gen nonwhite_age3 = nonwhite * age3
-label var nonwhite_age3 "Nonwhite age cubic (interaction term)"
-
-
-*Kitchen-sink fixed effects 
-gen nonwhite_year = nonwhite * year 
-label var nonwhite_year "Nonwhite year fixed effects"
-
-gen married_year = married * year 
-label var married_year "Married year fixed effects"
-
-gen nonwhite_state = nonwhite * state 
-label var nonwhite_state "nonwhite state fixed effects"
-
-gen birth_year = cohort * year
-label var birth_year "birth year fixed effects"
-
-gen state_year = state * year 
-label var state_year "state year fixed effects"
-
-gen state_married = state * married 
-label var state_married "State married fixed effects"
-
-gen state_under5 = state * under5 
-label var state_under5 "State child under 5 fixed effects"
-
-gen stateyr_nonwhite = state_year * nonwhite 
-label var stateyr_nonwhite "state year nonwhite fixed effects"
-
-gen stateyr_married  = state_year * married 
-label var stateyr_married "state year nonwhite fixed effects"
-
-
-
 
 ********************************************************************************
 * Baseline
@@ -328,19 +226,20 @@ estadd local KS  "Yes": col5
   ****************************************************
 * Table 2. The 1975 EITC Increased Maternal Employment
 *******************************************************
-esttab col1 col2 col3 col4 col5 ///
-, keep(1.mom) ///
-  coeflabels(1.mom "Mom × Post1975") ///
-  cells("b(fmt(3))" "se(par fmt(3))") ///
-  nostar ///
-  stats(Method N FE DEM KS, fmt(%9s %9.0f %9s %9s %9s) ///
+esttab col1 col2 col3 col4 col5 using "Table2_Results_Policy.csv", ///
+    replace ///
+    keep(1.mom) ///
+    coeflabels(1.mom "Mom × Post1975") ///
+    cells("b(fmt(3))" "se(par fmt(3))") ///
+    nostar ///
+    stats(Method N FE DEM KS, fmt(%9s %9.0f %9s %9s %9s) ///
         labels("Method" "Observations" ///
                "State & year FE" "Demographics" "Kitchen-sink")) ///
-  label noconstant nobase compress nogap nonum ///
-  collabels(none) ///
-  mtitles("(1)" "(2)" "(3)" "(4)" "(5)") ///
-  addnotes("Average marginal effects reported (logit/probit)." ///
-           "Robust standard errors clustered by state in parentheses." ///
-           "All regressions weighted using CPS ASEC sample weights." ///
-           "Kitchen-sink model includes all demographic, interaction, and state–year fixed effects.")
+    label noconstant nobase compress nogap nonum ///
+    collabels(none) ///
+    mtitles("(1)" "(2)" "(3)" "(4)" "(5)") ///
+    addnotes("Average marginal effects reported (logit/probit)." ///
+             "Robust standard errors clustered by state in parentheses." ///
+             "All regressions weighted using CPS ASEC sample weights." ///
+             "Kitchen-sink model includes all demographic, interaction, and state–year fixed effects.")
 

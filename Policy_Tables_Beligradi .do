@@ -272,7 +272,21 @@ keep(1.mom) ///
 
 	
 	
-
+//	
+// *Docs
+// esttab colA colB colC colD colE colF using table2.rtf, replace ///
+// keep(1.mom) ///
+//       coeflabels(1.mom "Mom × Post1975") ///
+//       cells("b(fmt(3))" "se(par fmt(3))") ///
+//       nostar ///
+//       stats(Method N FE, fmt(%9s %9.0f %9s %9s) ///
+//             labels("Method" "Observations" ///
+//                    "State & year FE")) ///
+//       label noconstant nobase compress nogap nonum ///
+//       collabels(none) ///
+//       mtitles("(1)" "(2)" "(3)" "(4)" "(5)" "(6)") ///
+//       addnotes("Sample includes all women ages 18–50. The dependent variable is binary employment, defined as having positive annual earnings. All regressions use CPS ASEC sample weights. Reported coefficients from logit and probit models are average marginal effects. Standard errors are robust to heteroskedasticity and clustered at the state level. Baseline specifications include mother, post-1975, and their interaction. Fixed-effects models additionally include state and year fixed effects. No demographic or unemployment controls are included in this table.Source: 1971-1986 March CPS data.")
+		 
 
 
 		 
@@ -304,7 +318,7 @@ reg employed  mother i.mom post1975  i.state i.workyear married incwelfr  nchild
 
 eststo colC, title("Probit  + Demographic Controls") 
 ********************************************************************************
-* employment rate includes state-year employment-to-population ratios and interactions with kid and married.// (LOGIT) (4)
+* Unemployment rate includes state-year employment-to-population ratios and interactions with kid and married.// (LOGIT) (4)
 ********************************************************************************
 
 logit employed mother i.mom post1975  married i.state i.workyear  incwelfr  nchild under5 nonwhite age age2 age3 educ_yrs educ_yrs2 nonwhite_mom  nonwhite_post mom_age married_post emp_rate  emprate_married  emprate_kid [pw=asecwt], vce(cluster state)
@@ -434,7 +448,7 @@ keep(1.mom) ///
   nostar ///
   stats(Method N FE DEM UN, fmt(%9s %9.0f %9s %9s %9s) ///
         labels("Method" "Observations" ///
-               "State & year FE"  "Demographics"  " Employment")) ///
+               "State & year FE"  "Demographics"  " Unemployment")) ///
   label noconstant nobase compress nogap nonum ///
   collabels(none) ///
   mtitles("(1)" "(2)" "(3)" "(4)" "(5)" "(6)") ///
